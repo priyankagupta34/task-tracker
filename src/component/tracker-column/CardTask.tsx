@@ -15,14 +15,20 @@ function CardTask({ title, description, createdAt, ...props }: CardTaskType) {
 			margin="2"
 			padding="2"
 			border
+			backgroundColor="bg-white"
 			borderColor="border-x-gray-200"
 			title={
-				<Text fontSize="text-xl" color="text-gray-600" padding="1">
+				<Text
+					fontSize="text-md"
+					color="text-gray-600"
+					padding="1"
+					fontWeight="font-semibold"
+				>
 					{title}
 				</Text>
 			}
 			description={
-				<Text fontSize="text-md" color="text-gray-400" padding="x2">
+				<Text fontSize="text-md" color="text-gray-500" padding="x1">
 					{description}
 				</Text>
 			}

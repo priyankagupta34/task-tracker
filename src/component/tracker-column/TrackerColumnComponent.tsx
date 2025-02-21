@@ -33,7 +33,7 @@ function TrackerColumnComponent({
 			border
 			onDrop={() => onDropHandler(type)}
 			borderStyle="border-dashed"
-			backgroundColor={dragOverType === type ? "bg-teal-50" : "white"}
+			backgroundColor={dragOverType === type ? "bg-teal-50" : "bg-white"}
 			borderColor={dragOverType === type ? "border-black" : "border-x-gray-400"}
 			{...props}
 		>

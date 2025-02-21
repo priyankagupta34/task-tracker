@@ -33,6 +33,8 @@ export default function Dashboard() {
 
 	const onDropHandler = async (dropStatus: TypeStatus) => {
 		if (dropStatus && taskToUpdate) {
+			setTaskToUpdate(null);
+			setDragOverType(null);
 			const update = { ...taskToUpdate };
 			const statusToChange = taskToUpdate.status;
 			const taskIdx = (gotStatusTasks?.[statusToChange] || []).findIndex(
@@ -45,8 +47,6 @@ export default function Dashboard() {
 			gotStatusTasks[dropStatus].push(thisTask);
 			setGotStatus({ ...gotStatusTasks });
 			await doUpdate(update, dropStatus);
-			setTaskToUpdate(null);
-			setDragOverType(null);
 		}
 	};
 

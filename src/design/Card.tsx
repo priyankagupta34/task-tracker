@@ -28,7 +28,7 @@ function Card({
 	margin = "0",
 	padding = "0",
 	boxShadow = "shadow-md",
-	backgroundColor = "white",
+	backgroundColor = "bg-white",
 	...props
 }: CardType) {
 	return (

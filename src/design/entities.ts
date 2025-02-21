@@ -67,7 +67,7 @@ export type BackgroundColor =
 	| "bg-cyan-300"
 	| "transparent"
 	| "bg-teal-50"
-	| "white";
+	| "bg-white";
 
 export type Position = "sticky" | "relative" | "static";
 

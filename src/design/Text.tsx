@@ -36,6 +36,7 @@ type TextType = {
 		| "text-gray-600"
 		| "text-gray-700"
 		| "text-gray-800"
+		| "text-gray-500"
 		| "text-zinc-500"
 		| "text-gray-50";
 	margin?: Margin;
