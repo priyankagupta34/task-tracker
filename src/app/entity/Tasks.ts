@@ -15,3 +15,9 @@ export type TypeStatus =
 	| "released";
 
 export type TypeListTask = { tasks: TypeTask[] };
+
+export type TypeStatusWiseTask = {
+	[key in TypeStatus]: TypeTask[];
+};
+
+export type TypeTaskBody = TypeTask & { newStatus: TypeStatus };

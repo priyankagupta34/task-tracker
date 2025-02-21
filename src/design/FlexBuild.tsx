@@ -1,9 +1,9 @@
 type FlexBuildType = {
 	children: React.ReactNode;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
-function FlexBuild({ children }: FlexBuildType) {
-	return <div>{children}</div>;
+function FlexBuild({ children, ...props }: FlexBuildType) {
+	return <div {...props}>{children}</div>;
 }
 
 export default FlexBuild;

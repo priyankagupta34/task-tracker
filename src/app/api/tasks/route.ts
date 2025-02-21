@@ -1,12 +1,21 @@
-import type { TypeListTask, TypeTask } from "@/app/entity/Tasks";
+import type { TypeStatusWiseTask, TypeTaskBody } from "@/app/entity/Tasks";
 import { NextResponse } from "next/server";
+import redis from "../lib/redis";
 
-const data: TypeTask[] = [];
+let data: TypeStatusWiseTask = {
+	todo: [],
+	inprogress: [],
+	created: [],
+	done: [],
+	testing: [],
+	released: [],
+};
 
 // GET request
 export async function GET() {
-	const values: TypeListTask = { tasks: data };
-	return NextResponse.json(values);
+	const totalData = (await redis.get("taskTracker")) || "{}";
+	data = JSON.parse(totalData);
+	return NextResponse.json(data);
 }
 
 // POST request
@@ -15,6 +24,18 @@ export async function POST(req: Request) {
 	body.id = Date.now();
 	body.status = "created";
 	body.createdAt = new Date().toISOString();
-	data.push(body);
+	data.created.push(body);
+	await redis.set("taskTracker", JSON.stringify(data));
 	return NextResponse.json({ message: "Task created", data: body });
+}
+
+export async function PATCH(req: Request) {
+	const body: TypeTaskBody = await req.json();
+	const task = data[body.status].find((val) => val.id === body.id);
+	if (!task) {
+		throw new Error("Task Not Found");
+	}
+	task.status = body.newStatus;
+	await redis.set("taskTracker", JSON.stringify(data));
+	return NextResponse.json({ message: "Task status updated", data: body });
 }

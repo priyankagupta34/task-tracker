@@ -1,43 +1,36 @@
+import type {
+	AlignItems,
+	FlexType,
+	Gap,
+	JustifyContent,
+	Padding,
+} from "./entities";
+import { getGap, getMargin, getPadding } from "./utils";
+
 type StackType = {
 	children: React.ReactNode;
-	flexDirection?:
-		| "flex-row"
-		| "flex-row-reverse"
-		| "flex-col"
-		| "flex-col-reverse";
-	gap?: number;
-	justifyContent?:
-		| "justify-start"
-		| "justify-end"
-		| "justify-center"
-		| "justify-between"
-		| "justify-around"
-		| "justify-evenly"
-		| "justify-stretch"
-		| "justify-baseline"
-		| "justify-normal";
-	alignItems?:
-		| "items-start"
-		| "items-end"
-		| "items-center"
-		| "items-baseline"
-		| "items-stretch";
-	margin?: number;
-	padding?: number;
-};
+	flexDirection?: FlexType;
+	gap?: Gap;
+	justifyContent?: JustifyContent;
+	alignItems?: AlignItems;
+	margin?: Padding;
+	padding?: Padding;
+} & React.HTMLAttributes<HTMLDivElement>;
 
 function FlexBox({
 	children,
 	flexDirection = "flex-row",
-	gap = 0,
+	gap = "0",
 	justifyContent = "justify-normal",
 	alignItems = "items-start",
-	margin = 0,
-	padding = 0,
+	margin = "0",
+	padding = "0",
+	...props
 }: StackType) {
 	return (
 		<div
-			className={`flex ${flexDirection} gap-${gap} ${justifyContent} ${alignItems} ${margin} ${padding}`}
+			className={`flex ${flexDirection} ${getGap(gap)} ${justifyContent} ${alignItems} ${getMargin(margin)} ${getPadding(padding)}`}
+			{...props}
 		>
 			{children}
 		</div>

@@ -1,3 +1,6 @@
+import type { Margin, Padding } from "./entities";
+import { getMargin, getPadding } from "./utils";
+
 type TextType = {
 	children: React.ReactNode;
 	fontFamily?: "font-serif" | "font-mono" | "font-sans";
@@ -11,6 +14,7 @@ type TextType = {
 	fontSize?:
 		| "text-xs"
 		| "text-sm"
+		| "text-md"
 		| "text-base"
 		| "text-lg"
 		| "text-xl"
@@ -32,23 +36,25 @@ type TextType = {
 		| "text-gray-600"
 		| "text-gray-700"
 		| "text-gray-800"
-		| "text-zinc-300"
+		| "text-zinc-500"
 		| "text-gray-50";
-	margin?: string;
-	padding?: string;
-};
+	margin?: Margin;
+	padding?: Padding;
+} & React.HTMLAttributes<HTMLDivElement>;
 function Text({
 	children,
-	fontFamily = "font-serif",
+	fontFamily = "font-sans",
 	fontWeight = "font-normal",
 	fontSize = "text-base",
 	color = "black",
 	margin = "0",
 	padding = "0",
+	...props
 }: TextType) {
 	return (
 		<p
-			className={`${fontWeight} ${fontFamily} ${fontSize} ${color} m-${margin} p-${padding}`}
+			{...props}
+			className={`${fontWeight} ${fontFamily} ${fontSize} ${color} ${getMargin(margin)} ${getPadding(padding)}`}
 		>
 			{children}
 		</p>

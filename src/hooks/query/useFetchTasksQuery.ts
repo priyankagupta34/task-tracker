@@ -1,13 +1,13 @@
-import type { TypeListTask, TypeTask } from "@/app/entity/Tasks";
+import type { TypeStatusWiseTask } from "@/app/entity/Tasks";
 import { useEffect, useState } from "react";
 
 const useFetchTasksQuery = () => {
-	const [list, setList] = useState<TypeTask[]>([]);
+	const [list, setList] = useState<TypeStatusWiseTask>();
 	useEffect(() => {
 		async function doValue() {
 			const respo = await fetch("/api/tasks");
-			const result: TypeListTask = await respo.json();
-			setList(result.tasks);
+			const result: TypeStatusWiseTask = await respo.json();
+			setList(result);
 		}
 		doValue();
 	}, []);
