@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import doUpdate from "@/hooks/mutations/useUpdateTaskStatusMutation";
 
 export default function Dashboard() {
-	const { statusTasks, refetch } = useFetchTasksQuery();
+	const { statusTasks } = useFetchTasksQuery();
 	const [gotStatusTasks, setGotStatus] = useState<
 		undefined | TypeStatusWiseTask
 	>(statusTasks);
@@ -32,11 +32,19 @@ export default function Dashboard() {
 
 	const onDropHandler = async (dropStatus: TypeStatus) => {
 		if (dropStatus && taskToUpdate) {
-			await doUpdate(taskToUpdate, dropStatus);
+			const update = { ...taskToUpdate };
+			const statusToChange = taskToUpdate.status;
+			const taskIdx = (gotStatusTasks?.[statusToChange] || []).findIndex(
+				(val) => val.id === taskToUpdate.id,
+			);
+			if (taskIdx === -1 || !gotStatusTasks) return;
+			const thisTask: TypeTask = gotStatusTasks[statusToChange][taskIdx];
+			gotStatusTasks[statusToChange].splice(taskIdx, 1);
+			thisTask.status = dropStatus;
+			gotStatusTasks[dropStatus].unshift(thisTask);
+			setGotStatus({ ...gotStatusTasks });
+			await doUpdate(update, dropStatus);
 			setTaskToUpdate(null);
-			const values = await refetch();
-			console.log("values", values);
-			setGotStatus(values);
 		}
 	};
 	return (
