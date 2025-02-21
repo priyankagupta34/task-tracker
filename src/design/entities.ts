@@ -3,7 +3,8 @@ export type BorderColor =
 	| "border-x-gray-200"
 	| "border-x-gray-400"
 	| "border-x-gray-600"
-	| "border-x-gray-800";
+	| "border-x-gray-800"
+	| "border-x-teal-800";
 
 export type Border = "border";
 export type Gap = "0" | "1" | "2" | "3" | "4" | "5";
@@ -65,7 +66,8 @@ export type BackgroundColor =
 	| "bg-cyan-500"
 	| "bg-cyan-300"
 	| "transparent"
-	| "bg-teal-50";
+	| "bg-teal-50"
+	| "white";
 
 export type Position = "sticky" | "relative" | "static";
 

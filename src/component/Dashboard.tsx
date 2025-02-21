@@ -21,6 +21,7 @@ export default function Dashboard() {
 	>(statusTasks);
 
 	const [taskToUpdate, setTaskToUpdate] = useState<TypeTask | null>(null);
+	const [dragOverType, setDragOverType] = useState<TypeStatus | null>(null);
 
 	useEffect(() => {
 		setGotStatus(statusTasks);
@@ -45,7 +46,12 @@ export default function Dashboard() {
 			setGotStatus({ ...gotStatusTasks });
 			await doUpdate(update, dropStatus);
 			setTaskToUpdate(null);
+			setDragOverType(null);
 		}
+	};
+
+	const onDragOverHandler = (dropStatus: TypeStatus) => {
+		setDragOverType(dropStatus);
 	};
 	return (
 		<FlexBox
@@ -62,9 +68,11 @@ export default function Dashboard() {
 						<TrackerColumnComponent
 							key={status}
 							type={status}
+							dragOverType={dragOverType}
 							tasks={gotStatusTasks[status] || []}
 							onDragStartHandler={onDragStartHandler}
 							onDropHandler={onDropHandler}
+							onDragOverHandler={onDragOverHandler}
 						/>
 					))}
 			</GridBox>

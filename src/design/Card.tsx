@@ -1,4 +1,10 @@
-import type { BorderColor, BoxShadow, Margin, Padding } from "./entities";
+import type {
+	BackgroundColor,
+	BorderColor,
+	BoxShadow,
+	Margin,
+	Padding,
+} from "./entities";
 import { getMargin, getPadding } from "./utils";
 
 type CardType = Omit<React.HTMLAttributes<HTMLDivElement>, "title"> & {
@@ -10,6 +16,7 @@ type CardType = Omit<React.HTMLAttributes<HTMLDivElement>, "title"> & {
 	margin?: Margin;
 	padding?: Padding;
 	boxShadow?: BoxShadow;
+	backgroundColor?: BackgroundColor;
 };
 
 function Card({
@@ -21,11 +28,12 @@ function Card({
 	margin = "0",
 	padding = "0",
 	boxShadow = "shadow-md",
+	backgroundColor = "white",
 	...props
 }: CardType) {
 	return (
 		<div
-			className={`${border ? "border" : ""} ${borderColor} rounded-md ${getMargin(margin)} ${getPadding(padding)} ${boxShadow} `}
+			className={`${border ? "border" : ""} ${borderColor} rounded-md ${getMargin(margin)} ${getPadding(padding)} ${boxShadow} ${backgroundColor}`}
 			{...props}
 		>
 			<div>{title}</div>

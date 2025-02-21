@@ -6,26 +6,35 @@ import Chips from "@/design/Chips";
 
 type TrackerColumnComponentProps = {
 	type: TypeStatus;
+	dragOverType: null | TypeStatus;
 	tasks: TypeTask[];
 	onDropHandler: (dropStatus: TypeStatus) => void;
+	onDragOverHandler: (dropStatus: TypeStatus) => void;
 	onDragStartHandler: (task: TypeTask) => void;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 function TrackerColumnComponent({
 	tasks,
 	type,
+	dragOverType,
 	onDragStartHandler,
 	onDropHandler,
+	onDragOverHandler,
 	...props
 }: TrackerColumnComponentProps) {
 	return (
 		<GridBuild
 			padding="8"
+			onDragOver={(e) => {
+				e.preventDefault();
+				onDragOverHandler(type);
+			}}
 			minHeight="min-h-screen"
 			border
 			onDrop={() => onDropHandler(type)}
 			borderStyle="border-dashed"
-			borderColor="border-x-gray-400"
+			backgroundColor={dragOverType === type ? "bg-teal-50" : "white"}
+			borderColor={dragOverType === type ? "border-black" : "border-x-gray-400"}
 			{...props}
 		>
 			<FlexBox
