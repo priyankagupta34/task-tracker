@@ -1,3 +1,4 @@
+import type { TypeStatus } from "@/app/entity/Tasks";
 import type { Gap, GridTemplates, Margin, Padding } from "./entities";
 
 export function getPadding(val: Padding) {
@@ -70,4 +71,23 @@ export function getGridTemplateColumns(val: GridTemplates) {
 		9: "grid-cols-9",
 	};
 	return values[val];
+}
+
+export function getChipsColor(val: TypeStatus) {
+	switch (val) {
+		case "created":
+			return "bg-cyan-300";
+		case "inprogress":
+			return "bg-yellow-100";
+		case "released":
+			return "bg-amber-300";
+		case "done":
+			return "bg-lime-400";
+		case "testing":
+			return "bg-teal-400";
+		case "todo":
+			return "bg-sky-300";
+		default:
+			return "white";
+	}
 }

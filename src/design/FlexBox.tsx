@@ -1,9 +1,15 @@
 import type {
 	AlignItems,
+	BackgroundColor,
+	BoxShadow,
 	FlexType,
 	Gap,
+	Height,
 	JustifyContent,
 	Padding,
+	Position,
+	Top,
+	Width,
 } from "./entities";
 import { getGap, getMargin, getPadding } from "./utils";
 
@@ -15,6 +21,12 @@ type StackType = {
 	alignItems?: AlignItems;
 	margin?: Padding;
 	padding?: Padding;
+	backgroundColor?: BackgroundColor;
+	position?: Position;
+	top?: Top;
+	boxShadow?: BoxShadow;
+	width?: Width;
+	height?: Height;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 function FlexBox({
@@ -25,11 +37,17 @@ function FlexBox({
 	alignItems = "items-start",
 	margin = "0",
 	padding = "0",
+	position = "static",
+	top = "top-0",
+	backgroundColor = "transparent",
+	boxShadow = "shadow-none",
+	width = "w-auto",
+	height = "h-auto",
 	...props
 }: StackType) {
 	return (
 		<div
-			className={`flex ${flexDirection} ${getGap(gap)} ${justifyContent} ${alignItems} ${getMargin(margin)} ${getPadding(padding)}`}
+			className={`flex ${flexDirection} ${getGap(gap)} ${justifyContent} ${alignItems} ${getMargin(margin)} ${getPadding(padding)} ${backgroundColor} ${position} ${top} ${boxShadow} ${width} ${height}`}
 			{...props}
 		>
 			{children}

@@ -1,7 +1,8 @@
 import type { TypeStatus, TypeTask } from "@/app/entity/Tasks";
 import CardTask from "./CardTask";
-import Text from "@/design/Text";
 import GridBuild from "@/design/GridBuild";
+import FlexBox from "@/design/FlexBox";
+import Chips from "@/design/Chips";
 
 type TrackerColumnComponentProps = {
 	type: TypeStatus;
@@ -27,7 +28,13 @@ function TrackerColumnComponent({
 			borderColor="border-x-gray-400"
 			{...props}
 		>
-			<Text fontSize="text-4xl">{type}</Text>
+			<FlexBox
+				justifyContent="justify-center"
+				alignItems="items-center"
+				margin="3"
+			>
+				<Chips value={type} status={type} />
+			</FlexBox>
 			{tasks.map((task: TypeTask) => {
 				const { title, description, createdAt, id } = task;
 				return (

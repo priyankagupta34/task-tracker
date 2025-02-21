@@ -1,4 +1,4 @@
-import type { Margin, Padding } from "./entities";
+import type { Margin, Padding, TextTranform } from "./entities";
 import { getMargin, getPadding } from "./utils";
 
 type TextType = {
@@ -40,6 +40,7 @@ type TextType = {
 		| "text-gray-50";
 	margin?: Margin;
 	padding?: Padding;
+	textTranform?: TextTranform;
 } & React.HTMLAttributes<HTMLDivElement>;
 function Text({
 	children,
@@ -49,12 +50,15 @@ function Text({
 	color = "black",
 	margin = "0",
 	padding = "0",
+	textTranform = "normal-case",
 	...props
 }: TextType) {
 	return (
 		<p
 			{...props}
-			className={`${fontWeight} ${fontFamily} ${fontSize} ${color} ${getMargin(margin)} ${getPadding(padding)}`}
+			className={`${fontWeight} ${fontFamily} ${fontSize} ${color} 
+			${getMargin(margin)} 
+			${getPadding(padding)} ${textTranform}`}
 		>
 			{children}
 		</p>

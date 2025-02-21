@@ -41,7 +41,7 @@ export default function Dashboard() {
 			const thisTask: TypeTask = gotStatusTasks[statusToChange][taskIdx];
 			gotStatusTasks[statusToChange].splice(taskIdx, 1);
 			thisTask.status = dropStatus;
-			gotStatusTasks[dropStatus].unshift(thisTask);
+			gotStatusTasks[dropStatus].push(thisTask);
 			setGotStatus({ ...gotStatusTasks });
 			await doUpdate(update, dropStatus);
 			setTaskToUpdate(null);
@@ -51,7 +51,6 @@ export default function Dashboard() {
 		<FlexBox
 			alignItems="items-center"
 			flexDirection="flex-col"
-			margin="y5"
 			onDragOver={(e) => e.preventDefault()}
 		>
 			<GridBox

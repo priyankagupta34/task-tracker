@@ -53,7 +53,7 @@ export async function PATCH(req: Request) {
 	thisTask.updatedAt = new Date().toISOString();
 	data[body.status].splice(taskIdx, 1);
 	thisTask.status = body.newStatus;
-	data[body.newStatus].unshift(thisTask);
+	data[body.newStatus].push(thisTask);
 	await redis.set("taskTracker", JSON.stringify(data));
 	return NextResponse.json({ done: true });
 }

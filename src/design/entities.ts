@@ -51,7 +51,37 @@ export type BoxShadow =
 	| "shadow-xs"
 	| "shadow-md"
 	| "shadow-none"
-	| "shadow-lg";
+	| "shadow-lg"
+	| BoxShadowWithColor;
 
-export type Height = "h-screen" | "h-full";
+export type BoxShadowWithColor = "shadow-sm shadow-cyan-500/50";
+
+export type Height = "h-screen" | "h-full" | "h-10" | "h-auto";
 export type MinHeight = "min-h-auto" | "min-h-screen";
+
+export type AlignSelf = "self-center";
+
+export type BackgroundColor =
+	| "bg-cyan-500"
+	| "bg-cyan-300"
+	| "transparent"
+	| "bg-teal-50";
+
+export type Position = "sticky" | "relative" | "static";
+
+export type Top = "top-0";
+
+export type Width =
+	| "w-2xs"
+	| "w-md"
+	| "w-xs"
+	| "w-sm"
+	| "w-auto"
+	| "w-20"
+	| "w-lg";
+
+export type TextTranform =
+	| "uppercase"
+	| "lowercase"
+	| "capitalize"
+	| "normal-case";

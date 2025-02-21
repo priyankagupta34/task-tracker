@@ -14,7 +14,7 @@ function GridBuild({
 	margin = "0",
 	padding = "0",
 	children,
-	height = "h-full",
+	height = "h-auto",
 	minHeight = "min-h-auto",
 	border = false,
 	borderStyle = "border-solid",
