@@ -20,6 +20,7 @@ function TrackerColumnComponent({
 	return (
 		<GridBuild
 			padding="8"
+			minHeight="min-h-screen"
 			border
 			onDrop={() => onDropHandler(type)}
 			borderStyle="border-dashed"

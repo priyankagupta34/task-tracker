@@ -52,3 +52,6 @@ export type BoxShadow =
 	| "shadow-md"
 	| "shadow-none"
 	| "shadow-lg";
+
+export type Height = "h-screen" | "h-full";
+export type MinHeight = "min-h-auto" | "min-h-screen";
