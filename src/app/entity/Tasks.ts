@@ -4,6 +4,7 @@ export type TypeTask = {
 	description: string;
 	status: TypeStatus;
 	createdAt: string;
+	updatedAt?: string;
 };
 
 export type TypeStatus =
@@ -21,3 +22,7 @@ export type TypeStatusWiseTask = {
 };
 
 export type TypeTaskBody = TypeTask & { newStatus: TypeStatus };
+
+export type CreateOrUpdate = {
+	done: boolean;
+};

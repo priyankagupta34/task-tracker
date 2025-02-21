@@ -4,12 +4,41 @@ import TrackerColumnComponent from "@/component/tracker-column/TrackerColumnComp
 import GridBox from "@/design/GridBox";
 import FlexBox from "@/design/FlexBox";
 import useFetchTasksQuery from "@/hooks/query/useFetchTasksQuery";
-import type { TypeStatus, TypeStatusWiseTask } from "@/app/entity/Tasks";
+import type {
+	TypeStatus,
+	TypeStatusWiseTask,
+	TypeTask,
+} from "@/app/entity/Tasks";
 import { StatusList } from "./utils";
 import type { GridTemplates } from "@/design/entities";
+import { useEffect, useState } from "react";
+import doUpdate from "@/hooks/mutations/useUpdateTaskStatusMutation";
 
 export default function Dashboard() {
-	const statusTasks: undefined | TypeStatusWiseTask = useFetchTasksQuery();
+	const { statusTasks, refetch } = useFetchTasksQuery();
+	const [gotStatusTasks, setGotStatus] = useState<
+		undefined | TypeStatusWiseTask
+	>(statusTasks);
+
+	const [taskToUpdate, setTaskToUpdate] = useState<TypeTask | null>(null);
+
+	useEffect(() => {
+		setGotStatus(statusTasks);
+	}, [statusTasks]);
+
+	const onDragStartHandler = (task: TypeTask) => {
+		setTaskToUpdate(task);
+	};
+
+	const onDropHandler = async (dropStatus: TypeStatus) => {
+		if (dropStatus && taskToUpdate) {
+			await doUpdate(taskToUpdate, dropStatus);
+			setTaskToUpdate(null);
+			const values = await refetch();
+			console.log("values", values);
+			setGotStatus(values);
+		}
+	};
 	return (
 		<FlexBox
 			alignItems="items-center"
@@ -21,12 +50,14 @@ export default function Dashboard() {
 				gridTemplateColumns={`${StatusList.length}` as GridTemplates}
 				gap="2"
 			>
-				{statusTasks &&
+				{gotStatusTasks &&
 					StatusList.map((status: TypeStatus) => (
 						<TrackerColumnComponent
 							key={status}
 							type={status}
-							tasks={statusTasks[status] || []}
+							tasks={gotStatusTasks[status] || []}
+							onDragStartHandler={onDragStartHandler}
+							onDropHandler={onDropHandler}
 						/>
 					))}
 			</GridBox>

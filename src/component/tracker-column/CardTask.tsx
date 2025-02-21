@@ -6,10 +6,11 @@ type CardTaskType = {
 	title: string;
 	description: string;
 	createdAt: string;
-};
-function CardTask({ title, description, createdAt }: CardTaskType) {
+} & React.HTMLAttributes<HTMLDivElement>;
+function CardTask({ title, description, createdAt, ...props }: CardTaskType) {
 	return (
 		<Card
+			{...props}
 			draggable
 			margin="2"
 			padding="2"
