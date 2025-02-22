@@ -21,8 +21,8 @@ export type Concats =
 	| "y3"
 	| "y4"
 	| "y5";
-export type Padding = Concats;
-export type Margin = Concats;
+export type Padding = Concats | "t1" | "t2";
+export type Margin = Concats | "t5";
 export type JustifyContent =
 	| "justify-start"
 	| "justify-end"
@@ -67,7 +67,8 @@ export type BackgroundColor =
 	| "bg-cyan-300"
 	| "transparent"
 	| "bg-teal-50"
-	| "bg-white";
+	| "bg-white"
+	| "bg-black";
 
 export type Position = "sticky" | "relative" | "static";
 

@@ -19,6 +19,8 @@ export function getPadding(val: Padding) {
 		y3: "py-3",
 		y4: "py-4",
 		y5: "py-5",
+		t1: "pt-1",
+		t2: "pt-2",
 	};
 	return values[val];
 }
@@ -41,6 +43,7 @@ export function getMargin(val: Margin) {
 		y3: "my-3",
 		y4: "my-4",
 		y5: "my-5",
+		t5: "mt-5",
 	};
 	return values[val];
 }

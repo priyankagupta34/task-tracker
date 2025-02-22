@@ -27,8 +27,8 @@ type TextType = {
 		| "text-8xl"
 		| "text-9xl";
 	color?:
-		| "black"
-		| "white"
+		| "text-black"
+		| "text-white"
 		| "text-sky-300"
 		| "text-gray-400"
 		| "text-gray-100"
@@ -48,7 +48,7 @@ function Text({
 	fontFamily = "font-sans",
 	fontWeight = "font-normal",
 	fontSize = "text-base",
-	color = "black",
+	color = "text-black",
 	margin = "0",
 	padding = "0",
 	textTranform = "normal-case",

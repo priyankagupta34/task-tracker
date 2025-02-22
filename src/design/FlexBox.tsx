@@ -6,6 +6,7 @@ import type {
 	Gap,
 	Height,
 	JustifyContent,
+	Margin,
 	Padding,
 	Position,
 	Top,
@@ -19,7 +20,7 @@ type StackType = {
 	gap?: Gap;
 	justifyContent?: JustifyContent;
 	alignItems?: AlignItems;
-	margin?: Padding;
+	margin?: Margin;
 	padding?: Padding;
 	backgroundColor?: BackgroundColor;
 	position?: Position;
