@@ -10,7 +10,6 @@ export default function TaskComponent({
 	open,
 	closeModal,
 }: TaskComponentProps) {
-	console.log("taskId", taskId);
 	if (!taskId) return null;
 	return (
 		<Modal open={open} closeModal={closeModal}>

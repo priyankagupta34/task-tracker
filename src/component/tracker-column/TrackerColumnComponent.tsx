@@ -5,8 +5,6 @@ import FlexBox from "@/design/FlexBox";
 import Chips from "@/design/Chips";
 import TaskComponent from "../TaskComponent";
 import { useState } from "react";
-// import { useRouter } from "next/router";
-import { useRouter } from "next/navigation";
 
 type TrackerColumnComponentProps = {
 	type: TypeStatus;
@@ -28,9 +26,6 @@ function TrackerColumnComponent({
 }: TrackerColumnComponentProps) {
 	const [taskId, setTaskId] = useState<number | undefined>();
 	const [openModal, setOpenModal] = useState(false);
-	const router = useRouter();
-	console.log("openModal", openModal);
-	console.log("taskId", taskId);
 	return (
 		<GridBuild
 			padding="8"
@@ -64,8 +59,7 @@ function TrackerColumnComponent({
 						createdAt={createdAt}
 						onClickExpand={() => {
 							setTaskId(id);
-							router.push("/task/open");
-							// setOpenModal(true);
+							setOpenModal(true);
 						}}
 					/>
 				);
