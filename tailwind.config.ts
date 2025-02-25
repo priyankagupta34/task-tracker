@@ -58,6 +58,12 @@ export default {
 				md: "calc(var(--radius) - 2px)",
 				sm: "calc(var(--radius) - 4px)",
 			},
+
+			animation: {
+				"bounce-once": "bounce 0.8s ease-out 0.5",
+				"pulse-once": "pulse 0.8s ease-in",
+				"ping-once": "ping 0.8s ease-in",
+			},
 		},
 	},
 	plugins: [require("tailwindcss-animate")],

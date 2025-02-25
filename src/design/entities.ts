@@ -57,10 +57,17 @@ export type BoxShadow =
 
 export type BoxShadowWithColor = "shadow-sm shadow-cyan-500/50";
 
-export type Height = "h-screen" | "h-full" | "h-10" | "h-auto";
+export type Height = "h-screen" | "h-full" | "h-10" | "h-auto" | "h-5/6";
 export type MinHeight = "min-h-auto" | "min-h-screen";
-
+export type BgOpacity = "bg-opacity-100" | "bg-opacity-60";
+export type BorderRadius = "rounded-md" | "rounded-none";
 export type AlignSelf = "self-center";
+
+export type Animation =
+	| "animate-pulse"
+	| "animate-none"
+	| "animate-bounce"
+	| "animate-bounce-once";
 
 export type BackgroundColor =
 	| "bg-cyan-500"
@@ -68,9 +75,10 @@ export type BackgroundColor =
 	| "transparent"
 	| "bg-teal-50"
 	| "bg-white"
-	| "bg-black";
+	| "bg-black"
+	| "bg-rgb(0 0 0 / 66%)";
 
-export type Position = "sticky" | "relative" | "static";
+export type Position = "sticky" | "relative" | "static" | "fixed";
 
 export type Top = "top-0";
 
@@ -81,7 +89,11 @@ export type Width =
 	| "w-sm"
 	| "w-auto"
 	| "w-20"
-	| "w-lg";
+	| "w-lg"
+	| "w-screen"
+	| "w-5xl"
+	| "w-full"
+	| "w-5/6";
 
 export type TextTranform =
 	| "uppercase"

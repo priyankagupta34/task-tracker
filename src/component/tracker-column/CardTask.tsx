@@ -1,13 +1,21 @@
 import Card from "@/design/Card";
 import FlexBox from "@/design/FlexBox";
+import FlexBuild from "@/design/FlexBuild";
 import Text from "@/design/Text";
 
 type CardTaskType = {
 	title: string;
 	description: string;
 	createdAt: string;
+	onClickExpand: () => void;
 } & React.HTMLAttributes<HTMLDivElement>;
-function CardTask({ title, description, createdAt, ...props }: CardTaskType) {
+function CardTask({
+	title,
+	description,
+	createdAt,
+	onClickExpand,
+	...props
+}: CardTaskType) {
 	return (
 		<Card
 			{...props}
@@ -18,14 +26,17 @@ function CardTask({ title, description, createdAt, ...props }: CardTaskType) {
 			backgroundColor="bg-white"
 			borderColor="border-x-gray-200"
 			title={
-				<Text
-					fontSize="text-md"
-					color="text-gray-600"
-					padding="1"
-					fontWeight="font-semibold"
-				>
-					{title}
-				</Text>
+				<FlexBox justifyContent="justify-between">
+					<Text
+						fontSize="text-md"
+						color="text-gray-600"
+						padding="1"
+						fontWeight="font-semibold"
+					>
+						{title}
+					</Text>
+					<FlexBuild onClick={onClickExpand}>{">>"}</FlexBuild>
+				</FlexBox>
 			}
 			description={
 				<Text fontSize="text-md" color="text-gray-500" padding="x1">
