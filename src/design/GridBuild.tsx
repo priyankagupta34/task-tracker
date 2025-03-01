@@ -3,6 +3,7 @@ import type {
 	BorderColor,
 	Height,
 	MinHeight,
+	Width,
 } from "./entities";
 
 type GridBuildProps = {
@@ -15,6 +16,7 @@ type GridBuildProps = {
 	borderStyle?: "border-solid" | "border-dashed" | "border-dotted";
 	borderColor?: BorderColor;
 	backgroundColor?: BackgroundColor;
+	width?: Width;
 } & React.HTMLAttributes<HTMLDivElement>;
 function GridBuild({
 	margin = "0",
@@ -26,12 +28,13 @@ function GridBuild({
 	borderStyle = "border-solid",
 	borderColor = "border-x-gray-800",
 	backgroundColor = "transparent",
+	width = "w-auto",
 	...props
 }: GridBuildProps) {
 	return (
 		<div
 			{...props}
-			className={`m-${margin} p-${padding} ${border ? "border" : ""} ${borderStyle} ${borderColor}  ${height} ${minHeight} ${backgroundColor}`}
+			className={`m-${margin} p-${padding} ${border ? "border" : ""} ${borderStyle} ${borderColor}  ${height} ${minHeight} ${backgroundColor} ${width}`}
 		>
 			{children}
 		</div>

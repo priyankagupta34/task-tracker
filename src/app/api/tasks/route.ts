@@ -15,9 +15,16 @@ let data: TypeStatusWiseTask = {
 	released: [],
 };
 
-async function fetchTasks() {
+let resultOfTasks: TypeStatusWiseTask | null = null;
+
+export async function fetchTasks() {
+	if (resultOfTasks) {
+		console.log("from existing OPOP");
+		return resultOfTasks;
+	}
 	const totalData = (await redis.get("taskTracker")) || "{}";
 	data = JSON.parse(totalData);
+	resultOfTasks = data;
 	return data;
 }
 
@@ -35,6 +42,7 @@ export async function POST(req: Request) {
 	body.createdAt = new Date().toISOString();
 	data.created.push(body);
 	await redis.set("taskTracker", JSON.stringify(data));
+	resultOfTasks = null;
 	return NextResponse.json({ message: "Task created", data: body });
 }
 
@@ -47,7 +55,7 @@ export async function PATCH(req: Request) {
 		(val) => val.id === body.id,
 	);
 	if (taskIdx === -1) {
-		throw new Error("Task Not Found");
+		return NextResponse.json({ error: "Task not found" }, { status: 404 });
 	}
 	const thisTask: TypeTask = data[body.status][taskIdx];
 	thisTask.updatedAt = new Date().toISOString();
@@ -55,6 +63,7 @@ export async function PATCH(req: Request) {
 	thisTask.status = body.newStatus;
 	data[body.newStatus].push(thisTask);
 	await redis.set("taskTracker", JSON.stringify(data));
+	resultOfTasks = null;
 	return NextResponse.json({ done: true });
 }
 

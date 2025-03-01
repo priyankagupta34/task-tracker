@@ -38,6 +38,7 @@ export default function Modal({ open, closeModal, children }: ModalProps) {
 						borderRadius="rounded-md"
 						width="w-5/6"
 						height="h-5/6"
+						overflow="overflow-auto"
 					>
 						{children}
 					</FlexBox>

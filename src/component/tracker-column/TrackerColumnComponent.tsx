@@ -49,13 +49,14 @@ function TrackerColumnComponent({
 				<Chips value={type} status={type} />
 			</FlexBox>
 			{tasks.map((task: TypeTask) => {
-				const { title, description, createdAt, id } = task;
+				const { title, createdAt, id } = task;
+				console.log("task", id);
 				return (
 					<CardTask
 						onDragStart={() => onDragStartHandler(task)}
 						key={id}
+						taskId={id}
 						title={title}
-						description={description}
 						createdAt={createdAt}
 						onClickExpand={() => {
 							setTaskId(id);
@@ -65,6 +66,7 @@ function TrackerColumnComponent({
 				);
 			})}
 			<TaskComponent
+				type="edit"
 				taskId={taskId}
 				open={openModal}
 				closeModal={() => {

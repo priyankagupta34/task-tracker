@@ -26,3 +26,8 @@ export type TypeTaskBody = TypeTask & { newStatus: TypeStatus };
 export type CreateOrUpdate = {
 	done: boolean;
 };
+
+export type CreateTask = {
+	title: string;
+	description: string;
+};

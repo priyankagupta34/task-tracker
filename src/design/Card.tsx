@@ -9,7 +9,7 @@ import { getMargin, getPadding } from "./utils";
 
 type CardType = Omit<React.HTMLAttributes<HTMLDivElement>, "title"> & {
 	title: React.ReactNode;
-	description: React.ReactNode;
+	description?: React.ReactNode;
 	children: React.ReactNode;
 	border?: boolean;
 	borderColor?: BorderColor;
@@ -37,7 +37,7 @@ function Card({
 			{...props}
 		>
 			<div>{title}</div>
-			<div>{description}</div>
+			{description ? <div>{description}</div> : null}
 			<div>{children}</div>
 		</div>
 	);

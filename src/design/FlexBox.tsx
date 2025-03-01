@@ -1,5 +1,6 @@
 import type {
 	AlignItems,
+	AlignSelf,
 	Animation,
 	BackgroundColor,
 	BgOpacity,
@@ -10,6 +11,7 @@ import type {
 	Height,
 	JustifyContent,
 	Margin,
+	Overflow,
 	Padding,
 	Position,
 	Top,
@@ -34,6 +36,8 @@ type StackType = {
 	bgOpacity?: BgOpacity;
 	borderRadius?: BorderRadius;
 	animation?: Animation;
+	overflow?: Overflow;
+	alignSelf?: AlignSelf;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 function FlexBox({
@@ -53,11 +57,13 @@ function FlexBox({
 	animation = "animate-none",
 	bgOpacity = "bg-opacity-100",
 	borderRadius = "rounded-none",
+	alignSelf = "",
+	overflow = "",
 	...props
 }: StackType) {
 	return (
 		<div
-			className={`flex ${flexDirection} ${getGap(gap)} ${justifyContent} ${alignItems} ${getMargin(margin)} ${getPadding(padding)} ${backgroundColor} ${position} ${top} ${boxShadow} ${width} ${height} ${bgOpacity} ${borderRadius} ${animation} duration-10`}
+			className={`flex ${flexDirection} ${getGap(gap)} ${justifyContent} ${alignItems} ${getMargin(margin)} ${getPadding(padding)} ${backgroundColor} ${position} ${top} ${boxShadow} ${width} ${height} ${bgOpacity} ${borderRadius} ${animation} ${overflow} duration-10 ${alignSelf}`}
 			{...props}
 		>
 			{children}

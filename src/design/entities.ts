@@ -61,7 +61,7 @@ export type Height = "h-screen" | "h-full" | "h-10" | "h-auto" | "h-5/6";
 export type MinHeight = "min-h-auto" | "min-h-screen";
 export type BgOpacity = "bg-opacity-100" | "bg-opacity-60";
 export type BorderRadius = "rounded-md" | "rounded-none";
-export type AlignSelf = "self-center";
+export type AlignSelf = "self-center" | "";
 
 export type Animation =
 	| "animate-pulse"
@@ -72,6 +72,7 @@ export type Animation =
 export type BackgroundColor =
 	| "bg-cyan-500"
 	| "bg-cyan-300"
+	| "bg-gray-600"
 	| "transparent"
 	| "bg-teal-50"
 	| "bg-white"
@@ -100,3 +101,10 @@ export type TextTranform =
 	| "lowercase"
 	| "capitalize"
 	| "normal-case";
+
+export type Overflow =
+	| ""
+	| "overflow-auto"
+	| "overflow-hidden"
+	| "overflow-visible"
+	| "overflow-scroll";

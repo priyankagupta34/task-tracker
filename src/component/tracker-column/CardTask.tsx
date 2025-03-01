@@ -1,21 +1,23 @@
 import Card from "@/design/Card";
 import FlexBox from "@/design/FlexBox";
-import FlexBuild from "@/design/FlexBuild";
 import Text from "@/design/Text";
 
 type CardTaskType = {
 	title: string;
-	description: string;
+	taskId: number;
+	description?: string;
 	createdAt: string;
 	onClickExpand: () => void;
 } & React.HTMLAttributes<HTMLDivElement>;
 function CardTask({
 	title,
-	description,
+	taskId,
+	// description,
 	createdAt,
 	onClickExpand,
 	...props
 }: CardTaskType) {
+	const last4 = `${taskId}`.slice(-4);
 	return (
 		<Card
 			{...props}
@@ -25,23 +27,23 @@ function CardTask({
 			border
 			backgroundColor="bg-white"
 			borderColor="border-x-gray-200"
+			onClick={onClickExpand}
 			title={
-				<FlexBox justifyContent="justify-between">
-					<Text
-						fontSize="text-md"
-						color="text-gray-600"
-						padding="1"
-						fontWeight="font-semibold"
-					>
-						{title}
-					</Text>
-					<FlexBuild onClick={onClickExpand}>{">>"}</FlexBuild>
+				<FlexBox gap="3">
+					<FlexBox borderRadius="rounded-md" padding="1">
+						<Text
+							fontSize="text-md"
+							color="text-black"
+							fontWeight="font-medium"
+							padding="1"
+						>
+							<code className="bg-gray-600 text-white p-1 px-2 m-1 rounded-md">
+								QC-{last4}
+							</code>
+							{title}
+						</Text>
+					</FlexBox>
 				</FlexBox>
-			}
-			description={
-				<Text fontSize="text-md" color="text-gray-500" padding="x1">
-					{description}
-				</Text>
 			}
 		>
 			<FlexBox flexDirection="flex-row-reverse">

@@ -62,6 +62,8 @@ export default function Dashboard() {
 			<GridBox
 				gridTemplateColumns={`${StatusList.length}` as GridTemplates}
 				gap="2"
+				width="w-full"
+				padding="x2"
 			>
 				{gotStatusTasks &&
 					StatusList.map((status: TypeStatus) => (
